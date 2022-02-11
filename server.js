@@ -11,7 +11,14 @@ const users = [
         name: "b",
         amount: 5
     }
-] //making json of users 
+]; //making json of users 
+
+server.get("/v1/stocks", (req,res)=>{
+    res.json(users);
+});
+
+
+
 
 server.listen(3000, () => {
     console.log("running");
