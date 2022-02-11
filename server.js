@@ -22,9 +22,16 @@ server.get("/v1/stocks", (req,res)=>{
     res.json(users);
 }); //api get, json(users)<- name of the json, write in domain "localhost:3000/v1/stocks" and then check 
 
-//name 조회 이 자리가 중요
+//name 조회 이 자리가 중요 순서대로 조회되니까
 server.get("/v1/stocks/:name",(req,res)=>{
-    console.log(req.params.name);
+    const user = users.find((u)=>{
+        return u.name === req.params.name;
+    });
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404).json({"message": "ERROR"});
+    }    
 });
 
 
