@@ -22,6 +22,11 @@ server.get("/v1/stocks", (req,res)=>{
     res.json(users);
 }); //api get, json(users)<- name of the json, write in domain "localhost:3000/v1/stocks" and then check 
 
+//name 조회 이 자리가 중요
+server.get("/v1/stocks/:name",(req,res)=>{
+    console.log(req.params.name);
+});
+
 
 server.post("/v1/stocks", (req, res) => {
     users.push(req.body) // user add
