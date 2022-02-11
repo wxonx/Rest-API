@@ -23,10 +23,10 @@ server.get("/v1/stocks", (req,res)=>{
 }); //api get, json(users)<- name of the json, write in domain "localhost:3000/v1/stocks" and then check 
 
 
-server.post("/v1/stocks",  (req,res)=>{
-    users.push(req,body) // user add
+server.post("/v1/stocks", (req, res) => {
+    users.push(req, body) // user add
     res.json(users);
-}); 
+    }); 
 
 
 
