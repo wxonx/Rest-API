@@ -5,7 +5,7 @@ const server = express(); //making server
 
 server.use(bodyParser.json()); //post method를 통해 data들을 읽을 수 있게
 
-
+// CRUD (create, read, updete, delete)
 const users = [
     {
         name: "a",
@@ -22,7 +22,8 @@ server.get("/v1/stocks", (req,res)=>{
     res.json(users);
 }); //api get, json(users)<- name of the json, write in domain "localhost:3000/v1/stocks" and then check 
 
-//name 조회 이 자리가 중요 순서대로 조회되니까
+
+//Inventory check 이 자리가 중요 순서대로 조회되니까
 server.get("/v1/stocks/:name",(req,res)=>{
     const user = users.find((u)=>{
         return u.name === req.params.name;
@@ -35,12 +36,24 @@ server.get("/v1/stocks/:name",(req,res)=>{
 });
 
 
+
+// user add
 server.post("/v1/stocks", (req, res) => {
-    users.push(req.body) // user add
+    users.push(req.body) 
     res.json(users);
     }); 
 
 
+//Update     
+server.put("/v1/stocks/:name", (req, res) => {
+    let foundIndex = users.findIndex(u => u.name === req.params.name);
+    if (foundIndex === -1) {
+        res.status(404).json({error : "error"});
+    } else {
+        users[foundIndex] = { ...users[foundIndex], ...req.body};
+        res.json(users[foundIndex]);
+    }
+});
 
 server.listen(3000, () => {
     console.log("running");
