@@ -1,6 +1,10 @@
 const express = require('express'); //express can be used
+const bodyParser = require('body-parser'); //post 요청을 받아 읽을 수 있게 하려고
 
 const server = express(); //making server
+
+server.use(bodyParser.json()); //post method를 통해 data들을 읽을 수 있게
+
 
 const users = [
     {
@@ -20,6 +24,7 @@ server.get("/v1/stocks", (req,res)=>{
 
 
 server.post("/v1/stocks",  (req,res)=>{
+    users.push(req,body) // user add
     res.json(users);
 }); 
 
