@@ -24,7 +24,7 @@ server.get("/v1/stocks", (req,res)=>{
 
 
 server.post("/v1/stocks", (req, res) => {
-    users.push(req, body) // user add
+    users.push(req.body) // user add
     res.json(users);
     }); 
 
