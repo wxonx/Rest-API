@@ -13,10 +13,15 @@ const users = [
     }
 ]; //making json of users 
 
+
 server.get("/v1/stocks", (req,res)=>{
     res.json(users);
-});
+}); //api get, json(users)<- name of the json, write in domain "localhost:3000/v1/stocks" and then check 
 
+
+server.post("/v1/stocks",  (req,res)=>{
+    res.json(users);
+}); 
 
 
 
