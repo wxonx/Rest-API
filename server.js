@@ -51,9 +51,23 @@ server.put("/v1/stocks/:name", (req, res) => {
         res.status(404).json({error : "error"});
     } else {
         users[foundIndex] = { ...users[foundIndex], ...req.body};
-        res.json(users[foundIndex]);
+        res.json(users[foundIndex]); //서버 응답
     }
 });
+
+
+//Delete
+server.delete("/v1/stocks/:name", (req, res) => {
+    let foundIndex = users.findIndex(u => u.name === req.params.name);
+    if (foundIndex === -1) {
+        res.status(404).json({error : "error"});
+    } else {
+        let foundUser = users.splice(foundIndex,1);
+        res.json(foundUser[0]);
+    }
+});
+
+
 
 server.listen(3000, () => {
     console.log("running");
